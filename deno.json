@@ -1,5 +1,5 @@
 {
   "tasks": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "example:basic": "deno run -A --unstable examples/basic.ts"
   }
 }

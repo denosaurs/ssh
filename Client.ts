@@ -41,6 +41,9 @@ export interface ClientOptions {
  */
 export class Client {
   #connection: Deno.TcpConn | null;
+  #port: number;
+  #hostname: string;
+  #username: string;
   isConnected: boolean;
 
   constructor({
@@ -50,16 +53,21 @@ export class Client {
   }: ClientOptions = {}) {
     this.#connection = null;
     this.isConnected = false;
+    this.#port = port;
+    this.#hostname = hostname;
+    this.#username = username;
   }
 
   /**
    * Connect to the server.
    */
   async connect() {
-    // this.#connection = await Deno.connect();
-
+    this.#connection = await Deno.connect({
+      port: this.#port,
+      hostname: this.#hostname,
+    });
     // // if successful:
-    // this.isConnected = true;
+    this.isConnected = true;
   }
 
   /**
